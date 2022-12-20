@@ -1,4 +1,4 @@
-# Atividade final de Alex'
+
 import os
 import random
 from sys import path

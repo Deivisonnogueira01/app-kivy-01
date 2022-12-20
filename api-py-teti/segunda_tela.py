@@ -1,5 +1,3 @@
-# Atividade final de Alex'
-
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 

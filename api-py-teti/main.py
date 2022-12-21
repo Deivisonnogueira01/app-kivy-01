@@ -38,7 +38,7 @@ class MeuAplicativo(App):
         request=requests.get(ip_url+"/nova-sala")
         json = request.json()
         chave_acesso = json['path']
-        self.file.get_screen('home').ids['idsala'].text=f'o codigo da sala é {chave_acesso}'
+        self.file.get_screen('home').ids['idsala'].text=f'Seu Código {chave_acesso}'
         return  
   
     def velha_sala(self):
@@ -47,11 +47,9 @@ class MeuAplicativo(App):
         response=requests.post(ip_url+"/join_room",json=cod_room)
         message = response.json()
         if message['message'] ==True:
-            print(message['message'])
-        #self.file.get_screen('home').ids["btn_join_room"].on_release=self.app.root.current='camera'
-        #self.file.get_screen('home').ids["btn_join_room"].on_release =  
+            print(message['message'])  
         if message['message'] ==False:
-            self.file.get_screen('home').ids['idsala'].text=f'codigo da sala inexistente'
+            self.file.get_screen('home').ids['idsala'].text=f'Erro'
 
 
     def capture(self):
@@ -86,7 +84,7 @@ class MeuAplicativo(App):
             camera = self.file.get_screen('home').ids['camera']
             camera.export_to_png("user1.png")
             files = {
-                "file":"/home/laboratorio02/Downloads/chat/user1.png",
+                "file":"/home/cbyk-dev/Documents/api-py-teti/user1.png",
                 "code_room":cod_room,
                 "user":user
             }
@@ -94,7 +92,7 @@ class MeuAplicativo(App):
             camera = self.file.get_screen('home').ids['camera']
             camera.export_to_png("user2.png")
             files = {
-            "file":"/home/laboratorio02/Downloads/chat/user2.png",
+            "file":"/home/cbyk-dev/Documents/api-py-teti/user2.png",
             "code_room":cod_room,
             "user":user
             }
@@ -104,9 +102,9 @@ class MeuAplicativo(App):
     def get_message(self):
         request=requests.get(ip_url+"/get_message")
         json = request.json()
-        room_key = json['path']
-        print(room_key)
-        self.file.get_screen('home').ids['imguser'].source = room_key  
+        chave_sala = json['path']
+        print(chave_sala)
+        self.file.get_screen('home').ids['imguser'].source = chave_sala  
 
 MeuAplicativo().run()
 
